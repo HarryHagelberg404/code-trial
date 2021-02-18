@@ -9,7 +9,12 @@ public class AddController {
 
     @PostMapping("/addbox")
     public ResponseTransfer addBox(String name, int weight, String color, String country) {
-        String respMessage = this._dbManager.addBox(new Box(name, weight, color, country));
+        Box box = new Box();
+        box.set_name(name);
+        box.set_weight(weight);
+        box.set_color(color);
+        box.set_country(country);
+        String respMessage = this._dbManager.addBox(box);
 
         return new ResponseTransfer(respMessage);
     }
