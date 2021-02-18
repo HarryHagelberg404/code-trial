@@ -1,7 +1,27 @@
 function Footer() {
   return (
     <div className="Footer">
-      <div className="upper-footer"></div>
+      <div className="upper-footer">
+        <div className="footer-wrapper">
+          <div className="footer-fraction">
+            <h1 className="footer-column">Client</h1>
+            <a className="footer-column" href="">Assumptions</a>
+          </div>
+          <div className="footer-fraction">
+            <h1 className="footer-column">Backend</h1>
+            <a className="footer-column" href="">Assumptions</a>
+          </div>
+          <div className="footer-fraction">
+            <h1 className="footer-column">Persistence</h1>
+            <a className="footer-column" href="">Assumptions</a>
+          </div>
+          <div className="footer-fraction">
+            <h1 className="footer-column">Testing</h1>
+            <a className="footer-column" href="">Assumptions</a>
+          </div>
+        </div>
+      </div>
+
       <div className="lower-footer">
         <img id="footer-logo" src="./fortnox_logo_vit.svg" />
       </div>

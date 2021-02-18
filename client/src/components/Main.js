@@ -18,7 +18,10 @@ function Main() {
                         <label>
                             Box color:
                         </label>
-                            <input type="text" name="weight"/>
+                            <div className="color-div">
+                                <input className="color-box" type="text" disabled="disabled" name="weight"/>
+                                <div className="color-picker"></div>
+                            </div>
                         <label>
                             Country:
                         </label>
@@ -28,14 +31,14 @@ function Main() {
                                 <option>Brazil</option>
                                 <option>Australia</option>
                             </select>
-                        <input type="submit" value="Submit" />
+                        <input type="submit" value="Save"/>
                     </form>
             </div>
         </div>
         <div className="list-div">
             <div className="list-box-view">
                 <h1>List Dispatches</h1>
-
+                <p>There is currently no dispatches available</p>
             </div>
         </div>
     </div>

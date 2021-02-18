@@ -83,10 +83,19 @@
               background: rgb(114, 114, 114);
             }
           }
-          input[type="text"] {
+          input[type="text"], select {
             width: 70%;
             height: 2rem;
             padding-left: 10px;
+          }
+          .color-div {
+            width: 70%;
+            display: flex;
+            justify-content: space-evenly;
+            .color-box {
+              width: 100% !important;
+              margin-right: 5%;
+            }
           }
         }
 
@@ -124,10 +133,28 @@
   .Footer {
     min-height: 5vh;
     background: rgb(82, 82, 82);
+    color: #ffffff;
     .upper-footer {
         height: 20rem;
         width: 100%;
         background: #555;
+        
+        .footer-wrapper {
+          display: flex;
+          justify-content: space-evenly;
+          width: 80%;
+          margin-left: 10%;
+          padding-top: 3vh;
+          .footer-fraction {
+            display: grid;
+            grid-template-columns: 1fr;
+            .footer-column {
+              margin-top: 3vh;
+              text-decoration: none;
+              color: inherit;
+            }
+          }
+        }
     }
     .lower-footer {
         height: 20rem;
@@ -136,7 +163,7 @@
         display: flex;
         align-items: center;
         #footer-logo {
-            height: 10vh;
+            height: 6vh;
             margin-left: auto;
             margin-right: auto;
         }
