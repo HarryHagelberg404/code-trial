@@ -15,6 +15,8 @@ I've researched different solutions of how to integrate Less into react and its 
 ## Back-end
 **Java**
 
+Using 1.8 since i want to use Java 8.
+
 ## Persistence
 **MySQL**
 
