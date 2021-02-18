@@ -1,39 +1,145 @@
-.App {
-    text-align: center;
-  }
-  
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
+// @import (inline) "google-fonts.less";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap.css");
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+// Nav
+  .Header {
+    min-height: 10vh;
+    font-family: 'Poppins', sans-serif;
+    border-bottom: 1px solid #dee2e6;
+    #nav_logo {
+        height: 10vh;
+        -webkit-filter: drop-shadow(12px 12px 25px rgba(0, 0, 0, 0.5));
     }
   }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
+// Hero
+  .Main {
+    min-height: 85vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #39444d, #ffffff);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-  .App-link {
-    color: #61dafb;
-  }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
+
+    h1 {
+        color: #444;
+        //   color: white;
     }
-    to {
-      transform: rotate(360deg);
+
+    .box-title {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        padding-top: 3rem;
+    }
+    // Form
+    .form-div {
+      min-height: 85vh;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      .add-box-form {
+        background-color: rgb(212, 211, 211);
+        min-height: 50vh;
+        width: 30rem;
+        margin-right: 4rem;
+        border-radius: 1rem;
+        box-shadow: 0px 4px 22px 0px rgba(0, 0, 0, 0.75);
+        text-align: center;
+        position: relative;
+
+        .form-fields {
+          display: flex;
+          flex-direction: column;
+          height: 20rem;
+          align-items: center;
+          justify-content: space-evenly;
+          input[type="submit"] {
+            font-family: "Poppins", sans-serif;
+            font-size: .9rem;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: .9rem;
+            background: #555;
+            color: white;
+            letter-spacing: .3rem;
+            text-transform: uppercase;
+            transition: all .3s ease;
+            border: none;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            margin-bottom: -6px;
+            &:hover {
+              background: rgb(114, 114, 114);
+            }
+          }
+          input[type="text"] {
+            width: 70%;
+            height: 2rem;
+            padding-left: 10px;
+          }
+        }
+
+        h1 {
+            padding-top: 3rem;
+            font-weight: normal;
+        }
+      }
+    }
+
+    // List
+    .list-div {
+        min-height: 85vh;
+        width: 100%;
+        display: flex;
+        justify-content: baseline;
+        align-items: center;
+        .list-box-view {
+            background-color: rgb(212, 211, 211);
+            min-height: 50vh;
+            width: 40rem;
+            margin-left: 4rem;
+            border-radius: 1rem;
+            box-shadow: 0px 4px 22px 0px rgba(0, 0, 0, 0.75);
+            text-align: center;
+        }
+        h1 {
+            padding-top: 3rem;
+            font-weight: normal;
+        }
     }
   }
-  
+
+
+  .Footer {
+    min-height: 5vh;
+    background: rgb(82, 82, 82);
+    .upper-footer {
+        height: 20rem;
+        width: 100%;
+        background: #555;
+    }
+    .lower-footer {
+        height: 20rem;
+        width: 100%;
+        background: #333;
+        display: flex;
+        align-items: center;
+        #footer-logo {
+            height: 10vh;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+  }
+
+   
