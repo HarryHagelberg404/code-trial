@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import ColorPicker from './ColorPicker';
+import { connect } from 'react-redux'
+// useSelector for accessing state.
 
 function FormView() {
     const [boxName, setBoxName] = useState("");
@@ -65,11 +67,7 @@ function FormView() {
                         }}
                     />
                     <label>Box color:</label>
-                    <ColorPicker 
-                        onClick={(event) => {
-                            console.log('Test')
-                        }}
-                    />
+                    <ColorPicker />
                     <label>Country:</label>
                     <select
                         type="text"

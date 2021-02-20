@@ -49,9 +49,6 @@ export default function ColorPicker() {
         type="hidden"
         name="color-input"
         value={colorRGB}
-        onChange={() => {
-            console.log("Test")
-        }}
       />
       <input
         className="color-box"
