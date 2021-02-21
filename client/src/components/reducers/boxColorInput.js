@@ -1,13 +1,12 @@
-const boxColorInputReducer = (state = '255, 255, 255', action) => {
-    switch(action.type) {
-      case "addBoxInput":
-        console.log(action.payload)
-        return state = action.payload;
-      case "removeBoxInput":
-        return state = action.payload;
+const boxColorInputReducer = (state = "255, 255, 255", action) => {
+  switch (action.type) {
+    case "addBoxInput":
+      return (state = action.payload);
+    case "removeBoxInput":
+      return (state = action.payload);
     default:
-        return state
-    }
-}
+      return state;
+  }
+};
 
 export default boxColorInputReducer;

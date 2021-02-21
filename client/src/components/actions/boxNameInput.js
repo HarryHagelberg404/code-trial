@@ -1,6 +1,6 @@
 export const addNameInput = (data) => {
-  return {
-    type: "addNameInput",
-    payload: data
-  };
+    return {
+        type: "addNameInput",
+        payload: data
+    };
 };

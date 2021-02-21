@@ -1,12 +1,12 @@
 export const assignColorTrue = (data) => {
     return {
-      type: "assignColorTrue",
+        type: "assignColorTrue",
     }
-  }
+}
   
-  export const assignColorFalse = () => {
+export const assignColorFalse = () => {
     return {
-      type: "assignColorFalse",
+        type: "assignColorFalse",
     }
-  }
+}
   

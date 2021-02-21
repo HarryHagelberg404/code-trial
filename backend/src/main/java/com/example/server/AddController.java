@@ -1,21 +1,21 @@
 package com.example.server;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.HashMap;
+
 @RestController
 public class AddController {
-    private DBManager _dbManager = new DBManager();
 
-    @PostMapping("/addbox")
-    public ResponseTransfer addBox(String name, int weight, String color, String country) {
-        Box box = new Box();
-        box.set_name(name);
-        box.set_weight(weight);
-        box.set_color(color);
-        box.set_country(country);
-        String respMessage = this._dbManager.addBox(box);
-
-        return new ResponseTransfer(respMessage);
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/api/addbox")
+    public ResponseEntity addBox(@RequestBody HashMap<String, String> body) {
+        String respMessage = new DBManager().addBox(body);
+        return new ResponseEntity(respMessage, HttpStatus.OK);
     }
 }

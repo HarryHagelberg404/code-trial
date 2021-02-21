@@ -1,7 +1,7 @@
 export const addCountryInput = (data) => {
     return {
-      type: "addCountryInput",
-      payload: data
+        type: "addCountryInput",
+        payload: data
     };
-  };
+};
   
