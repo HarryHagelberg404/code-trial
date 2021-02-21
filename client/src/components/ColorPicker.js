@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+
+// Color picker found at: https://github.com/Simonwep/pickr
 import Pickr from "@simonwep/pickr";
 import "@simonwep/pickr/dist/themes/classic.min.css";
 
-export default function ColorPicker() {
+// Redux actions
+import { addColorInput, removeColorInput } from './actions/boxColorInput'
+import { assignColorTrue, assignColorFalse } from './actions/boxColorAssigned';
 
-  const [colorRGB, setColor] = useState("");
+export default function ColorPicker() {
+  const dispatch = useDispatch();
+  const color = useSelector(state => state.boxColorInput)
 
   useEffect(() => {
     const pickr = Pickr.create({
@@ -28,19 +35,20 @@ export default function ColorPicker() {
     });
     pickr.on("save", (...args) => {
         // If user clears the chosen color
-        if (args[0] === null) setColor("255, 255, 255")
-
+        let color;
+        if (args[0] === null) {
+            dispatch(removeColorInput());
+            dispatch(assignColorFalse());
+        }
         else {
-            let color = pickr.getSelectedColor().toRGBA();
-            color = color.splice(0, 3).toString()
-            setColor(color);
+            color = pickr.getSelectedColor().toRGBA();
+            color = color.splice(0, 3).toString();
+            
+            dispatch(addColorInput(color));
+            dispatch(assignColorTrue());
         }
     });
   }, []);
-
-  const retreiveRGBColor = () => {
-    return colorRGB;
-  }
 
   return (
     <div className="color-div">
@@ -48,13 +56,13 @@ export default function ColorPicker() {
       <input
         type="hidden"
         name="color-input"
-        value={colorRGB}
+        value={color}
       />
       <input
         className="color-box"
         type="text"
         readOnly={true}
-        style={{ background: `rgb(${colorRGB})`}}
+        style={{ background: `rgb(${color})`}}
       />
     </div>
   );

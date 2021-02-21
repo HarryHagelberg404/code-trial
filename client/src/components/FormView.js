@@ -1,29 +1,34 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import ColorPicker from './ColorPicker';
-import { connect } from 'react-redux'
-// useSelector for accessing state.
+import NameInput from './NameInput';
+
+import { addNameInput } from './actions/boxNameInput';
+import { addWeightInput } from './actions/boxWeightInput';
+import { addCountryInput } from './actions/boxCountryInput';
 
 function FormView() {
-    const [boxName, setBoxName] = useState("");
-    const [boxWeight, setBoxWeight] = useState(0);
-    // const [boxColor, setBoxColor] = useState(""); TODO
-    const [boxCountry, setBoxCountry] = useState("Sweden");
-
+    const dispatch = useDispatch();
+    // Acess global Redux store
+    const nameInput = useSelector(state => state.boxNameInput);
+    const weightInput = useSelector(state => state.boxWeightInput);
+    const colorInput = useSelector(state => state.boxColorInput);
+    const isColorAssigned = useSelector(state => state.boxColorAssigned);
+    const countryInput = useSelector(state => state.boxCountryInput);
 
     const validateInputHandler = (event) => {
         event.preventDefault()
         // console.log(ColorPicker.retrieveRGBColor())
         const dataObj = {
-            name: boxName,
-            weight: boxWeight,
-            color: '#fff',
-            country: boxCountry
+            name: nameInput,
+            weight: weightInput,
+            color: colorInput,
+            country: countryInput
         }
-        console.log(dataObj)
-        
+        console.log(dataObj);
     }
 
-    const postBoxCredentials = () => {
+    const postBoxCredentialsHandler = () => {
     //     Axios.post("http://localhost:3001/create", {
     //   name: name,
     //   age: age,
@@ -50,20 +55,13 @@ function FormView() {
             <div className="add-box-form">
                 <h1>Add Box</h1>
                 <div className="form-fields">
-                    <label>Name:</label>
-                    <input
-                        type="text"
-                        name="name-input"
-                        onChange={(event) => {
-                            setBoxName(event.target.value)
-                        }}
-                    />
+                   <NameInput />
                     <label>Weight:</label>
                     <input
                         type="text"
                         name="weight-input"
-                        onChange={(event) => {
-                            setBoxName(event.target.value)
+                        onBlur={(event) => {
+                            dispatch(addWeightInput(event.target.value));
                         }}
                     />
                     <label>Box color:</label>
@@ -72,8 +70,8 @@ function FormView() {
                     <select
                         type="text"
                         name="country-input"
-                        onChange={(event) => {
-                            setBoxCountry(event.target.value)
+                        onBlur={(event) => {
+                            dispatch(addCountryInput(event.target.value));
                         }}>
                         <option>Sweden</option>
                         <option>China</option>
