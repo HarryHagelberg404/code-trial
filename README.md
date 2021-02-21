@@ -4,6 +4,8 @@ In this artifact I list and elaborate about the challenges, solutions the assump
 
 ## Setup to launch the application
 
+## Testing the application
+
 ## Client-side
 
 ## Back-end
