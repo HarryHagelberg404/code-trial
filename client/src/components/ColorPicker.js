@@ -17,6 +17,8 @@ export default function ColorPicker() {
     const pickr = Pickr.create({
       el: ".color-picker",
       theme: "classic",
+      default: "#3faf2a",
+
       components: {
         preview: true,
         opacity: false,
@@ -27,7 +29,7 @@ export default function ColorPicker() {
           hsla: false,
           hsva: false,
           cmyk: false,
-          input: true,
+          input: false,
           clear: true,
           save: true,
         },

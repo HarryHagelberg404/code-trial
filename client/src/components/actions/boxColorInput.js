@@ -1,16 +1,12 @@
 export const addColorInput = (data) => {
-    return {
-        type: "addBoxInput",
-        assigned: false,
-        payload: data
-    }
-}
-  
+  return {
+    type: "addBoxInput",
+    payload: data,
+  };
+};
+
 export const removeColorInput = () => {
-    return {
-        type: "removeBoxInput",
-        assigned: true,
-        payload: "255, 255, 255"
-    }
-}
-  
+  return {
+    type: "removeBoxInput",
+  };
+};
