@@ -6,13 +6,19 @@ In the different artifacts below I list and elaborate about the challenges, solu
 
 ## Setup to launch the application
 
-Open a terminal and navigate to the application root directory. Then enter **exactly**:
+Open a terminal and navigate to the application root directory. Then enter **exactly:**
 
 ```
 start.bat
 ```
 
 ## Testing the application
+
+Open a terminal and navigate to the application root directory. Then enter **exactly:**
+
+```
+test.bat
+```
 
 ## Client-side
 
