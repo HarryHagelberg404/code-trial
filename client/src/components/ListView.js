@@ -7,7 +7,6 @@ import { resetFormState } from "./actions/resetFormState";
 
 function ListView() {
   const dispatch = useDispatch();
-  const [isEmptyBoxList, setIsEmptyBoxList] = useState(true);
   const [boxList, setBoxList] = useState([]);
 
   useEffect(() => {
@@ -18,14 +17,13 @@ function ListView() {
       .get("http://localhost:8080/api/listbox")
       .then((response) => {
         if (response.data.length === 0) {
-          setIsEmptyBoxList(true);
+          setBoxList([]);
         } else {
           setBoxList(response.data);
-          setIsEmptyBoxList(false);
         }
       })
       .catch((err) => {
-        setIsEmptyBoxList(true);
+        setBoxList([]);
       });
   }, []);
 
@@ -34,7 +32,7 @@ function ListView() {
       return (
         <>
           <tr>
-            <td key={key}>{value.name}</td>
+            <td>{value.name}</td>
             <td>{value.weight}</td>
             <td>
               <div
@@ -60,7 +58,7 @@ function ListView() {
       <div className="list-div">
         <div className="list-box-view">
           <h1 className="list-box-view-h1">List Dispatches</h1>
-          {isEmptyBoxList ? (
+          {!boxList.length > 0 ? (
             <p className="listbox-view-p">
               There is currently no dispatches available
             </p>

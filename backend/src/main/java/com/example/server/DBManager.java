@@ -15,7 +15,7 @@ public class DBManager {
         try {
             Connection con = this.openDBConnection();
             Statement stmt = con.createStatement();
-            String queryString = "CREATE TABLE IF NOT EXISTS boxes(name varchar(40), weight double, color varchar(15), shipping double)";
+            String queryString = "CREATE TABLE IF NOT EXISTS boxes(name varchar(40), weight double, color varchar(18), shipping double)";
             PreparedStatement preparedStatement = con.prepareStatement(queryString);
             preparedStatement.execute();
             con.close();
