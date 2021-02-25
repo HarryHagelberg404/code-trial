@@ -8,6 +8,7 @@ public class ServerApplication {
 
 	public static void main(String[] args) {
 		new DBManager();
+		System.setProperty("server.port","8081");
 		SpringApplication.run(ServerApplication.class, args);
 	}
 }

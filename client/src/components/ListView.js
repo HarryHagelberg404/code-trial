@@ -14,7 +14,7 @@ function ListView() {
     dispatch(resetFormState());
     // Retrieve dispatches from backend
     axios
-      .get("http://localhost:8080/api/listbox")
+      .get("http://localhost:8081/api/listbox")
       .then((response) => {
         if (response.data.length === 0) {
           setBoxList([]);
@@ -33,7 +33,7 @@ function ListView() {
         <>
           <tr>
             <td>{value.name}</td>
-            <td>{value.weight}</td>
+            <td>{value.weight} kg</td>
             <td>
               <div
                 style={{

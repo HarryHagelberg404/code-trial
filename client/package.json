@@ -23,7 +23,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "SET PORT=8080 && react-app-rewired start",
     "build": "react-app-rewired build",
     "test:unit": "mocha --require @babel/register --require ./test/helpers.js --require ./test/dom.js 'src/**/*.spec.js'",
     "eject": "react-scripts eject"

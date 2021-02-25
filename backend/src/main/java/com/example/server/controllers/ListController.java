@@ -1,5 +1,6 @@
-package com.example.server;
+package com.example.server.controllers;
 
+import com.example.server.DBManager;
 import org.json.JSONArray;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,15 @@ public class ListController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/api/listbox")
     public ResponseEntity listBox() throws SQLException {
-        JSONArray respMessage = new DBManager().listBoxes();
-        return new ResponseEntity<>(respMessage.toList(), HttpStatus.OK);
+        JSONArray retrievedBoxes = this.getBoxesFromDB();
+        return this.respondToRequest(retrievedBoxes);
+    }
+
+    public JSONArray getBoxesFromDB() throws SQLException {
+        return new DBManager().listBoxes();
+    }
+
+    public ResponseEntity respondToRequest(JSONArray retrievedData) {
+        return new ResponseEntity<>(retrievedData.toList(), HttpStatus.OK);
     }
 }

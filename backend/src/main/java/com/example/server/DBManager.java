@@ -2,10 +2,16 @@ package com.example.server;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import javax.swing.plaf.nimbus.State;
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.HashMap;
 
 public class DBManager {
+    private final String connectionString = "jdbc:mysql://localhost:3306/trial?serverTimezone=UTC";
+    private final String username = "root";
+    private final String password = "root";
 
     public DBManager() {
         this.init();
@@ -13,26 +19,27 @@ public class DBManager {
 
     public void init() {
         try {
-            Connection con = this.openDBConnection();
-            Statement stmt = con.createStatement();
+            Connection con = this.openDBConnection(this.connectionString, this.username, this.password);
+            con.createStatement();
             String queryString = "CREATE TABLE IF NOT EXISTS boxes(name varchar(40), weight double, color varchar(18), shipping double)";
             PreparedStatement preparedStatement = con.prepareStatement(queryString);
             preparedStatement.execute();
             con.close();
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (SQLException e) {
+            //Exit with code 1 to see error
+            System.exit(1);
         }
     }
 
-    private Connection openDBConnection() throws SQLException {
+    public Connection openDBConnection(String connectString, String userName, String passWord) throws SQLException {
         return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/trial?serverTimezone=UTC", "root", "root"
+                connectString, userName, passWord
         );
     }
 
-    public String addBox(HashMap dataMap) {
+    public boolean addBox(HashMap<String, String> dataMap) {
         try {
-            Connection con = this.openDBConnection();
+            Connection con = this.openDBConnection(this.connectionString, this.username, this.password);
             String queryString = "INSERT INTO boxes(name, weight, color, shipping) VALUES(?, ?, ?, ?)";
             PreparedStatement preparedStatement = con.prepareStatement(queryString);
 
@@ -41,7 +48,7 @@ public class DBManager {
             String color = (String) dataMap.get("color");
             String country = (String) dataMap.get("country");
 
-            CountryToDoubleConverter converter = new CountryToDoubleConverter();
+            CountryToWeightConverter converter = new CountryToWeightConverter();
             double shipping = converter.stringToConvert(country, weight);
 
             preparedStatement.setString(1, name);
@@ -49,34 +56,39 @@ public class DBManager {
             preparedStatement.setString(3, color);
             preparedStatement.setDouble(4, shipping);
 
-            preparedStatement.execute();
+            int queryResult = preparedStatement.executeUpdate();
             con.close();
 
-            return "Box has been added!";
-        } catch (Exception e) {
-            System.out.println(e);
-            return "Could not add box!";
+            return true;
+        } catch (IllegalArgumentException | SQLException e) {
+            return false;
         }
     }
 
-    public JSONArray listBoxes() throws SQLException {
-        Connection con = this.openDBConnection();
-        String queryString = "SELECT * FROM boxes";
-        PreparedStatement preparedStatement = con.prepareStatement(queryString);
-        ResultSet resultset = preparedStatement.executeQuery(queryString);
+    public JSONArray listBoxes() {
+        try {
+            Connection con = this.openDBConnection(this.connectionString, this.username, this.password);
+            String queryString = "SELECT * FROM boxes";
+            PreparedStatement preparedStatement = con.prepareStatement(queryString);
+            ResultSet resultset = preparedStatement.executeQuery(queryString);
 
-        JSONArray returnArr = new JSONArray();
-        while (resultset.next()) {
-            JSONObject currEntity = new JSONObject();
+            JSONArray returnArr = new JSONArray();
 
-            currEntity.put("name", resultset.getString("name"));
-            currEntity.put("weight", resultset.getDouble("weight"));
-            currEntity.put("color", resultset.getString("color"));
-            currEntity.put("shipping", resultset.getDouble("shipping"));
-            returnArr.put(currEntity);
+            while (resultset.next()) {
+                JSONObject currEntity = new JSONObject();
 
+                currEntity.put("name", resultset.getString("name"));
+                currEntity.put("weight", resultset.getDouble("weight"));
+                currEntity.put("color", resultset.getString("color"));
+                currEntity.put("shipping", resultset.getDouble("shipping"));
+                returnArr.put(currEntity);
+
+            }
+            resultset.close();
+            con.close();
+            return returnArr;
+        } catch (SQLException e) {
+            return new JSONArray();
         }
-        con.close();
-        return returnArr;
     }
 }

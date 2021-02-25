@@ -45,7 +45,7 @@ function FormView() {
   const postBoxHandler = (color) => {
     console.log(color);
     axios
-      .post("http://localhost:8080/api/addbox", {
+      .post("http://localhost:8081/api/addbox", {
         name: nameInput,
         weight: weightInput,
         color: color,
