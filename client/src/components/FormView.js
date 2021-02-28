@@ -19,6 +19,8 @@ function FormView() {
   const colorInput = useSelector((state) => state.boxColorInput);
   const isColorAssigned = useSelector((state) => state.boxColorAssigned);
   const countryInput = useSelector((state) => state.boxCountryInput);
+  const isNameAssigned = useSelector((state) => state.boxNameAssigned);
+  const isWeightAssigned = useSelector((state) => state.boxWeightAssigned);
 
   const [isInsufficientInput, setInSufficientInput] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
@@ -31,6 +33,7 @@ function FormView() {
     ) {
       setInSufficientInput(true);
     } else {
+      setInSufficientInput(false);
       // Reduce rgb string if it contains a large number of decimals
       const strippedRGBColor = colorInput
         .split(",")
@@ -62,11 +65,11 @@ function FormView() {
   };
 
   const isInvalidNameHandler = () => {
-    return nameInput.length <= 0;
+    if (nameInput.length <= 0 || !isNameAssigned) return true;
   };
 
   const isInvalidWeightHandler = () => {
-    return weightInput <= 0;
+    if (weightInput <= 0 || !isWeightAssigned) return true;
   };
 
   const isInvalidColorHandler = () => {

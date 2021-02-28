@@ -9,4 +9,6 @@ cd ..
 cd client
 
 echo "Starting the frontend tests"
+npm test
+
 cd ..

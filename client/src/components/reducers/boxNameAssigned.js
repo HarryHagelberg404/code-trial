@@ -1,8 +1,8 @@
-const boxColorAssignedReducer = (state = false, action) => {
+const boxNameAssignedReducer = (state = false, action) => {
   switch (action.type) {
-    case "assignColorTrue":
+    case "assignNameTrue":
       return (state = true);
-    case "assignColorFalse":
+    case "assignNameFalse":
       return (state = false);
     case "resetFormState":
       return (state = false);
@@ -11,4 +11,4 @@ const boxColorAssignedReducer = (state = false, action) => {
   }
 };
 
-export default boxColorAssignedReducer;
+export default boxNameAssignedReducer;

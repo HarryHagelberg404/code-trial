@@ -13,7 +13,7 @@ import java.sql.SQLException;
 @RestController
 public class ListController {
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/api/listbox")
     public ResponseEntity listBox() throws SQLException {
         JSONArray retrievedBoxes = this.getBoxesFromDB();

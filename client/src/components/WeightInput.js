@@ -3,26 +3,36 @@ import { useSelector, useDispatch } from "react-redux";
 
 // Redux actions
 import { addWeightInput } from "./actions/boxWeightInput";
+import {
+  assignWeightTrue,
+  assignWeightFalse,
+} from "./actions/boxWeightAssigned";
 
 export default function WeightInput() {
   const dispatch = useDispatch();
   const weightInput = useSelector((state) => state.boxWeightInput);
-  const [isErrorMessage, setErrorMessage] = useState("");
-  const [isInvalidInput, setValidityOfInput] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isInvalidInput, setInvalidityOfInput] = useState(false);
 
   const validateInputHandler = (event) => {
     if (event.target.value === "") {
-      setValidityOfInput(true);
+      setInvalidityOfInput(true);
       setErrorMessage("Values other than numbers are not permitted");
+      dispatch(assignWeightFalse());
     } else {
       const inputNumValue = event.target.value;
-
       if (inputNumValue < 0) {
+        setInvalidityOfInput(true);
         setErrorMessage("Negative values are not permitted");
-        setValidityOfInput(true);
+        dispatch(assignWeightFalse());
+      } else if (inputNumValue.length > 10) {
+        setInvalidityOfInput(true);
+        setErrorMessage("You cant have this many characters");
+        dispatch(assignWeightFalse());
       } else {
-        setValidityOfInput(false);
+        setInvalidityOfInput(false);
         dispatch(addWeightInput(inputNumValue));
+        dispatch(assignWeightTrue());
       }
     }
   };
@@ -30,7 +40,7 @@ export default function WeightInput() {
   return (
     <>
       <label>Weight:</label>
-      {isInvalidInput ? <p>{isErrorMessage}</p> : ""}
+      {isInvalidInput ? <p className="inputWarning">{errorMessage}</p> : ""}
       <input
         type="number"
         name="weight-input"

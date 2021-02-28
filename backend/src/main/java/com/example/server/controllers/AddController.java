@@ -10,7 +10,7 @@ import java.util.HashMap;
 @RestController
 public class AddController {
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/api/addbox")
     public ResponseEntity<?> addBox(@RequestBody HashMap<String, String> body) {
         if (body.isEmpty()) return this.respondToRequest(false);

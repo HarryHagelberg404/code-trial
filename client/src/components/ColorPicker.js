@@ -44,6 +44,7 @@ export default function ColorPicker() {
       } else {
         color = pickr.getSelectedColor().toRGBA();
         color = color.splice(0, 3).toString();
+        // console.log(color);
 
         dispatch(addColorInput(color));
         dispatch(assignColorTrue());

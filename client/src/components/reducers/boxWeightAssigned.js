@@ -1,8 +1,8 @@
-const boxColorAssignedReducer = (state = false, action) => {
+const boxWeightAssignedReducer = (state = false, action) => {
   switch (action.type) {
-    case "assignColorTrue":
+    case "assignWeightTrue":
       return (state = true);
-    case "assignColorFalse":
+    case "assignWeightFalse":
       return (state = false);
     case "resetFormState":
       return (state = false);
@@ -11,4 +11,4 @@ const boxColorAssignedReducer = (state = false, action) => {
   }
 };
 
-export default boxColorAssignedReducer;
+export default boxWeightAssignedReducer;

@@ -10,7 +10,6 @@ function ListView() {
   const [boxList, setBoxList] = useState([]);
 
   useEffect(() => {
-    // Clear old form data if it exists
     dispatch(resetFormState());
     // Retrieve dispatches from backend
     axios
@@ -30,21 +29,19 @@ function ListView() {
   const boxTableHandler = () => {
     const list = boxList.map((value, key) => {
       return (
-        <>
-          <tr>
-            <td>{value.name}</td>
-            <td>{value.weight} kg</td>
-            <td>
-              <div
-                style={{
-                  backgroundColor: `rgb(${value.color})`,
-                  height: "1.5rem",
-                }}
-              ></div>
-            </td>
-            <td>{value.shipping.toFixed(2)} kr</td>
-          </tr>
-        </>
+        <tr key={key}>
+          <td>{value.name}</td>
+          <td>{value.weight} kg</td>
+          <td>
+            <div
+              style={{
+                backgroundColor: `rgb(${value.color})`,
+                height: "1.5rem",
+              }}
+            ></div>
+          </td>
+          <td>{value.shipping.toFixed(2)} kr</td>
+        </tr>
       );
     });
     return list;

@@ -1,6 +1,6 @@
 import "./App.less";
 import Header from "./components/Header";
-import Main from "./components/Main";
+import Main from "./components/MainView";
 import FormView from "./components/FormView";
 import ListView from "./components/ListView";
 import Footer from "./components/Footer";

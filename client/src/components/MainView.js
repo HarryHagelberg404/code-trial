@@ -34,14 +34,14 @@ function Main() {
           <h1 className="third-h1">Solving problems</h1>
           <p className="third-p">
             Solving problems as a team will result in shared knowledge as well
-            as better performing unit
+            as better a performing unit
           </p>
         </div>
         <div className="main-subdiv-third">
           <img className="third-img" src="./developer.jpg" />
           <h1 className="third-h1">Growth</h1>
           <p className="third-p">
-            Both individual and collective growth results is a good thing. One
+            Both individual and collective growth results in good things. One
             benefits from the other, as it should.
           </p>
         </div>

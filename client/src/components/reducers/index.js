@@ -4,6 +4,8 @@ import boxColorAssignedReducer from "./boxColorAssigned";
 import boxNameInputReducer from "./boxNameInput";
 import boxWeightInputReducer from "./boxWeightInput";
 import boxCountryInputReducer from "./boxCountryInput";
+import boxNameAssignedReducer from "./boxNameAssigned";
+import boxWeightAssignedReducer from "./boxWeightAssigned.js";
 
 const allReducers = combineReducers({
   boxNameInput: boxNameInputReducer,
@@ -11,6 +13,8 @@ const allReducers = combineReducers({
   boxColorInput: boxColorInputReducer,
   boxColorAssigned: boxColorAssignedReducer,
   boxCountryInput: boxCountryInputReducer,
+  boxNameAssigned: boxNameAssignedReducer,
+  boxWeightAssigned: boxWeightAssignedReducer,
 });
 
 export default allReducers;
