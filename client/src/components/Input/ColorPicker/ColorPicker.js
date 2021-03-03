@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 // Color picker found at: https://github.com/Simonwep/pickr
 import Pickr from "@simonwep/pickr";
 import "@simonwep/pickr/dist/themes/classic.min.css";
 
-// Redux actions
-import { addColorInput, removeColorInput } from "./actions/boxColorInput";
-import { assignColorTrue, assignColorFalse } from "./actions/boxColorAssigned";
+import { addColorInput, removeColorInput } from "../../../actions/boxColorInput";
+import { assignColorTrue, assignColorFalse } from "../../../actions/boxColorAssigned";
 
 export default function ColorPicker() {
   const dispatch = useDispatch();
@@ -44,7 +42,6 @@ export default function ColorPicker() {
       } else {
         color = pickr.getSelectedColor().toRGBA();
         color = color.splice(0, 3).toString();
-        // console.log(color);
 
         dispatch(addColorInput(color));
         dispatch(assignColorTrue());

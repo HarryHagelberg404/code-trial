@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-// Reset form-action
-import { resetFormState } from "./actions/resetFormState";
+import { resetFormState } from "../actions/resetFormState";
 
-function Main() {
+function MainView() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,7 +13,7 @@ function Main() {
   return (
     <div className="Main">
       <div className="main-banner-div">
-        <img className="main-banner-img" src="./delivery.jpg" />
+        <img className="main-banner-img" src="./images/delivery.jpg" />
       </div>
 
       <div className="box-title">
@@ -22,7 +21,7 @@ function Main() {
       </div>
       <div className="main-subdiv">
         <div className="main-subdiv-third">
-          <img className="third-img" src="./office.jpg" />
+          <img className="third-img" src="./images/office.jpg" />
           <h1 className="third-h1">Aspiration</h1>
           <p className="third-p">
             Aspire to learn from coworkers and peers, they often have valuable
@@ -30,7 +29,7 @@ function Main() {
           </p>
         </div>
         <div className="main-subdiv-third">
-          <img className="third-img" src="./high_five.jpg" />
+          <img className="third-img" src="./images/high_five.jpg" />
           <h1 className="third-h1">Solving problems</h1>
           <p className="third-p">
             Solving problems as a team will result in shared knowledge as well
@@ -38,7 +37,7 @@ function Main() {
           </p>
         </div>
         <div className="main-subdiv-third">
-          <img className="third-img" src="./developer.jpg" />
+          <img className="third-img" src="./images/developer.jpg" />
           <h1 className="third-h1">Growth</h1>
           <p className="third-p">
             Both individual and collective growth results in good things. One
@@ -50,4 +49,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default MainView;

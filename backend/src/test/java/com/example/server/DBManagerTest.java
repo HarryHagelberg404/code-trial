@@ -2,9 +2,8 @@ package com.example.server;
 
 import org.junit.jupiter.api.Test;
 
-import java.sql.BatchUpdateException;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,22 +14,13 @@ class DBManagerTest {
 
     private final String inValidUsername = "test";
 
-    public HashMap generateValidInput() {
-        HashMap<String, String> testInput = new HashMap<>();
-        testInput.put("name", "TestName");
-        testInput.put("weight", "10");
-        testInput.put("color", "255, 255, 255");
-        testInput.put("country", "Sweden");
-        return testInput;
-    }
-
-    public HashMap generateInvalidInput() {
-        HashMap<String, String> testInput = new HashMap<>();
-        testInput.put("name", "TestName");
-        testInput.put("weight", "10");
-        testInput.put("color", "255.10000032323, 255, 255");
-        testInput.put("country", "Sweden");
-        return testInput;
+    public Box generateValidInput() {
+        Box testBox = new Box();
+        testBox.set_boxName("TestName");
+        testBox.set_boxWeight(10);
+        testBox.set_boxColor("255, 255, 255");
+        testBox.set_boxShipping(10);
+        return testBox;
     }
 
     @Test
@@ -56,10 +46,10 @@ class DBManagerTest {
     }
 
     @Test
-    void insertInvalidInput() {
+    void retrieveBoxes() {
         DBManager dbManager = new DBManager();
-        boolean isValidInsertion = dbManager.addBox(this.generateInvalidInput());
-        //Insert INVALID input to DB
-        assertFalse(isValidInsertion);
+        List<Box> boxList = dbManager.listBoxes();
+        //Retrieve list of boxes NON empty
+        assertTrue(boxList.size() > 0);
     }
 }

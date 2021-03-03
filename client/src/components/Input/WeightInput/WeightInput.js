@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-// Redux actions
-import { addWeightInput } from "./actions/boxWeightInput";
-import {
-  assignWeightTrue,
-  assignWeightFalse,
-} from "./actions/boxWeightAssigned";
+import { addWeightInput } from "../../../actions/boxWeightInput";
+import { assignWeightTrue, assignWeightFalse } from "../../../actions/boxWeightAssigned";
 
 export default function WeightInput() {
   const dispatch = useDispatch();

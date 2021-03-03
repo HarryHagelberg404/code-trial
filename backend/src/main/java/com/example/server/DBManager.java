@@ -2,11 +2,9 @@ package com.example.server;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import javax.swing.plaf.nimbus.State;
-import javax.xml.transform.Result;
 import java.sql.*;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBManager {
     private final String connectionString = "jdbc:mysql://localhost:3306/trial?serverTimezone=UTC";
@@ -37,58 +35,48 @@ public class DBManager {
         );
     }
 
-    public boolean addBox(HashMap<String, String> dataMap) {
+    public boolean addBox(Box box) {
         try {
             Connection con = this.openDBConnection(this.connectionString, this.username, this.password);
             String queryString = "INSERT INTO boxes(name, weight, color, shipping) VALUES(?, ?, ?, ?)";
             PreparedStatement preparedStatement = con.prepareStatement(queryString);
 
-            String name = (String) dataMap.get("name");
-            double weight = Double.parseDouble((String) dataMap.get("weight"));
-            String color = (String) dataMap.get("color");
-            String country = (String) dataMap.get("country");
+            preparedStatement.setString(1, box.get_boxName());
+            preparedStatement.setDouble(2, box.get_boxWeight());
+            preparedStatement.setString(3, box.get_boxColor());
+            preparedStatement.setDouble(4, box.get_boxShipping());
 
-            CountryToWeightConverter converter = new CountryToWeightConverter();
-            double shipping = converter.stringToConvert(country, weight);
-
-            preparedStatement.setString(1, name);
-            preparedStatement.setDouble(2, weight);
-            preparedStatement.setString(3, color);
-            preparedStatement.setDouble(4, shipping);
-
-            int queryResult = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
             con.close();
 
             return true;
-        } catch (IllegalArgumentException | SQLException e) {
+        } catch (SQLException e) {
             return false;
         }
     }
 
-    public JSONArray listBoxes() {
+    public List<Box> listBoxes() {
+        List<Box> returnList = new ArrayList<>();
         try {
             Connection con = this.openDBConnection(this.connectionString, this.username, this.password);
             String queryString = "SELECT * FROM boxes";
             PreparedStatement preparedStatement = con.prepareStatement(queryString);
             ResultSet resultset = preparedStatement.executeQuery(queryString);
 
-            JSONArray returnArr = new JSONArray();
-
             while (resultset.next()) {
-                JSONObject currEntity = new JSONObject();
+                Box boxToAdd = new Box();
+                boxToAdd.set_boxName(resultset.getString("name"));
+                boxToAdd.set_boxWeight(resultset.getDouble("weight"));
+                boxToAdd.set_boxColor(resultset.getString("color"));
+                boxToAdd.set_boxShipping(resultset.getDouble("shipping"));
 
-                currEntity.put("name", resultset.getString("name"));
-                currEntity.put("weight", resultset.getDouble("weight"));
-                currEntity.put("color", resultset.getString("color"));
-                currEntity.put("shipping", resultset.getDouble("shipping"));
-                returnArr.put(currEntity);
-
+                returnList.add(boxToAdd);
             }
             resultset.close();
             con.close();
-            return returnArr;
+            return returnList;
         } catch (SQLException e) {
-            return new JSONArray();
+            return returnList;
         }
     }
 }

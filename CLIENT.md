@@ -67,9 +67,6 @@ If the requests wasn't completed by the client, the user would either be present
 
 One requirement when creating the application was to use **Less** as a preprocessor to **CSS**.
 As I've only used SaSS before (SCSS) it's a welcome challenge to use Less instead.
-I researched different solutions of how to integrate Less into react and its either "Ejecting" or not.
-
-Assumption, first used input text and used regex to remove other chars. then i used number as requirements said but decided to still have regex left as you can still have "e or E as an input which would return a string and cause an error state.
 
 #### Alternative solutions:
 
@@ -78,3 +75,5 @@ Assumption, first used input text and used regex to remove other chars. then i u
   but since "input number" only allows a number (and some other chars) I then only checked if the value was an empty string (returned when you include previously mentioned chars in the input) or if the given weight was a negative number.
 
 ### Problems faced
+
+The major problem faced when developing the application was when i was to test the client. A very time draining problem which caused my application to lack quality.

@@ -1,9 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 
-// Redux actions
-import { addNameInput } from "./actions/boxNameInput";
-import { assignNameTrue, assignNameFalse } from "./actions/boxNameAssigned";
+import { addNameInput } from "../../../actions/boxNameInput";
+import { assignNameTrue, assignNameFalse } from "../../../actions/boxNameAssigned";
 
 export default function NameInput() {
   const dispatch = useDispatch();

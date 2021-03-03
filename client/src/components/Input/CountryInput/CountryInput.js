@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-// Redux actions
-import { addCountryInput } from "./actions/boxCountryInput";
+import { addCountryInput } from "../../../actions/boxCountryInput";
 
 export default function CountryInput() {
   const dispatch = useDispatch();

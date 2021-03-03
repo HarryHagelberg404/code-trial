@@ -2,8 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-// Reset form-action
-import { resetFormState } from "./actions/resetFormState";
+import { resetFormState } from "../actions/resetFormState";
 
 function ListView() {
   const dispatch = useDispatch();
@@ -18,7 +17,7 @@ function ListView() {
         if (response.data.length === 0) {
           setBoxList([]);
         } else {
-          setBoxList(response.data);
+          setBoxList(response.data.boxes);
         }
       })
       .catch((err) => {
@@ -30,17 +29,17 @@ function ListView() {
     const list = boxList.map((value, key) => {
       return (
         <tr key={key}>
-          <td>{value.name}</td>
-          <td>{value.weight} kg</td>
+          <td>{value._boxName}</td>
+          <td>{value._boxWeight} kg</td>
           <td>
             <div
               style={{
-                backgroundColor: `rgb(${value.color})`,
+                backgroundColor: `rgb(${value._boxColor})`,
                 height: "1.5rem",
               }}
             ></div>
           </td>
-          <td>{value.shipping.toFixed(2)} kr</td>
+          <td>{value._boxShipping.toFixed(2)} kr</td>
         </tr>
       );
     });
@@ -50,7 +49,7 @@ function ListView() {
   return (
     <div className="Main">
       <div className="main-banner-div">
-        <img className="main-banner-img" src="./delivery.jpg" />
+        <img className="main-banner-img" src="./images/delivery.jpg" />
       </div>
       <div className="list-div">
         <div className="list-box-view">

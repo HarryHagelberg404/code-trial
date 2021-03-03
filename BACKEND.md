@@ -15,12 +15,11 @@ I took use of the application framework **Spring** as it's a very popular framew
 
 I hosted my **MySQL** Database on PHPMyAdmin for convenience when developing.
 For the application to function the person who tests it needs to have a local DB available, ex. PHPMyAdmin.
+More about the prerequisites when starting the application can be found at the initial **README.md**
 
 #### Receiving client requests
 
 When recieving requests I took use of Sping's @RestController as well as its @PostMapping import to intercept the requests (In this case "/api/addbox"). I declared the @RequestBody as a HashMap<String, String> to be able to get the key value pairs from the body.
-
-The @GetMapping
 
 #### Converting country type to shipping cost
 
@@ -40,10 +39,10 @@ The method "stringToConvert" took a String countryString and an double weight as
 
 If the database insertion was made correctly the user would be responded with the data "Box has been added" and the correct status code which it could present in the client. Else it would be responded with "Could not add box" and the correct status code.
 
-If the database selection of all entities where made correct the user would be responded with JSON containing the entities.
+If the database selection of all entities where made correct (GET request) the user would be responded with JSON containing the entities.
 
 #### Alternative solutions:
 
 I initially used my database initialization in static method on application startup but later changed it and separeated the connection to a separate method that every method in need could take use of.
 
-I initially thought to use hibernte as its an easy to use database-framework wich translates OO models to database entities. The requirements specifically said: "As we don't use ORM frameworks or query builders, we expect you to write your own SQL statements." thus I didn't use hibernate.
+I initially thought to use hibernate as its an easy to use database-framework wich translates OO models to database entities. The requirements specifically said: "As we don't use ORM frameworks or query builders, we expect you to write your own SQL statements." thus I didn't use hibernate.

@@ -1,75 +1,62 @@
 package com.example.server.controllers;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AddControllerTest {
-    public HashMap generateValidInput() {
-        HashMap<String, String> testInput = new HashMap<>();
-        testInput.put("name", "TestName");
-        testInput.put("weight", "10");
-        testInput.put("color", "255, 255, 255");
-        testInput.put("country", "Sweden");
-        return testInput;
+    private final String validStatusCode = "202 ACCEPTED";
+
+    private HashMap<String, String> generateValidInput() {
+        HashMap<String, String> testBox = new HashMap();
+        testBox.put("name", "Test");
+        testBox.put("weight", "20");
+        testBox.put("color", "255, 255, 255");
+        testBox.put("country", "Sweden");
+        return testBox;
     }
 
-    public HashMap generateInvalidInput() {
-        HashMap<String, String> testInput = new HashMap<>();
-        testInput.put("name", "TestName");
-        testInput.put("weight", "10");
-        testInput.put("color", "255, 255, 255");
-        testInput.put("country", "Denmark");
-        return testInput;
-    }
-
-    @Test
-    void isValidRequest() {
-
+    private HashMap<String, String> generateInvalidInput() {
+        HashMap<String, String> testBox = new HashMap();
+        testBox.put("name", "Test");
+        testBox.put("weight", "20");
+        testBox.put("color", "255, 255, 255");
+        testBox.put("country", "Denmark");
+        return testBox;
     }
 
     @Test
-    void addBoxValidInput() {
-        HashMap<String, String> testData = generateValidInput();
+    void createBoxValidInput() {
+        HashMap testBox = generateValidInput();
 
         AddController controller = new AddController();
-        boolean isValidInsertion = controller.addBoxToDB(testData);
-
-        assertTrue(isValidInsertion);
+        assertDoesNotThrow(() -> controller.createBox(testBox));
     }
 
     @Test
-    void addBoxInValidInput() {
-        HashMap testData = generateInvalidInput();
+    void createBoxInValidInput() {
+        HashMap testBox = generateInvalidInput();
 
         AddController controller = new AddController();
-        boolean response = controller.addBoxToDB(testData);
 
-        assertFalse(response);
+        assertThrows(IllegalArgumentException.class, () -> controller.createBox(testBox));
     }
 
     @Test
     void respondToRequestTrue() {
-        ResponseEntity shouldBeEqual = new ResponseEntity("Box has been added", HttpStatus.OK);
-
+        HashMap testBox = generateValidInput();
         AddController controller = new AddController();
-        ResponseEntity response = controller.respondToRequest(true);
-
-        assertEquals(shouldBeEqual, response);
+        ResponseEntity response = controller.addBox(testBox);
+        assertEquals(this.validStatusCode, response.getStatusCode().toString());
     }
 
     @Test
     void respondToRequestFalse() {
-        ResponseEntity shouldNotBeEqual = new ResponseEntity("Box has been added", HttpStatus.BAD_REQUEST);
-
         AddController controller = new AddController();
         ResponseEntity response = controller.respondToRequest(false);
-
-        assertNotEquals(shouldNotBeEqual, response);
+        assertNotEquals(this.validStatusCode, response.getStatusCode().toString());
     }
 }

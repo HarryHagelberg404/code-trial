@@ -3,13 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 // Components
-import ColorPicker from "./ColorPicker";
-import NameInput from "./NameInput";
-import WeightInput from "./WeightInput";
-import CountryInput from "./CountryInput";
+import ColorPicker from "./Input/ColorPicker/ColorPicker";
+import NameInput from "./Input/NameInput/NameInput";
+import WeightInput from "./Input/WeightInput/WeightInput";
+import CountryInput from "./Input/CountryInput/CountryInput";
 
-// Reset form-action
-import { resetFormState } from "./actions/resetFormState";
+import { resetFormState } from "../actions/resetFormState";
 
 function FormView() {
   const dispatch = useDispatch();
@@ -39,7 +38,6 @@ function FormView() {
         .split(",")
         .map((n) => Number(n).toFixed(1))
         .toString();
-      console.log(strippedRGBColor);
       // Make POST request to backend
       postBoxHandler(strippedRGBColor);
     }
@@ -55,7 +53,7 @@ function FormView() {
         country: countryInput,
       })
       .then((response) => {
-        setResponseMessage(response.data);
+        setResponseMessage(response.data.message);
       })
       .catch((error) => {
         setResponseMessage("Something went wrong, Please try again");
@@ -79,7 +77,7 @@ function FormView() {
   return (
     <div className="Main">
       <div className="main-banner-div">
-        <img className="main-banner-img" src="./delivery.jpg" />
+        <img className="main-banner-img" src="./images/delivery.jpg" />
       </div>
       <div className="form-div">
         <div className="add-box-form">
