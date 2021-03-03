@@ -10,10 +10,20 @@ In the different artifacts below I list and elaborate about the challenges, solu
 
 These requirements must be fulfilled:
 
-- A MySQL database must exist
+- A MySQL database **must** exist
 - The connection should be on port: 3306
 - The password and username should be: "root" & "root"
 - There should be a database with the name: "trial"
+- JAVA_HOME must exist in an environment varible linked to your Java JDK.
+- You **must** install all the dependencies **before** start or testing the application.
+
+## Installing dependencies
+
+Open a terminal and navigate to the application root directory. Then enter **exactly:**
+
+```
+install.bat
+```
 
 ## Starting the application
 

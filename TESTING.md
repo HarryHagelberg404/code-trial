@@ -39,4 +39,11 @@ When i tried rendering the **FormView** jest complained about that **useEffect**
 * FormView
 * Every Input Component
 
+To cover up for the error previously faced with the incompability when using **Enzyme** I constructed manual test cases. The test cases covers all the input components aswell as the FormView.
+
 As i talked upon earlier, my testing effort is not sufficient. Errors occur, issues surface and when testing this application I was unfortunately not able to solve them. I'm aware that the score of the trial as well as the overall quality of this application is affected by this.
+
+#### Test Cases
+As I didnt have much time left due to school assignments as well as working as a consultant I tried covering the area not tested on the form and input components. I covered this with manual test cases which can be found at **Manual_Test_cases.md**.
+
+---
